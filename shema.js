@@ -24,6 +24,7 @@ const typeDefs = `
 
     type Query{
         getFriends: [Friend]
+        getFriendsDB: [Friend]
         hello: String
     }
 
