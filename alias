@@ -1,0 +1,29 @@
+query{
+  formDB :getFriendsDB{
+   firstName,
+    lastName,
+    gender, email
+  }
+  from: getFriends{
+   firstName,
+    lastName,
+    gender, email
+  }
+}
+
+
+query{
+  formDB :getFriendsDB{
+   ...friendFragment
+  }
+  from: getFriends{
+   ...friendFragment
+  }
+}
+
+fragment friendFragment on Friend{
+  firstName,
+  lastName,
+  email
+}
+

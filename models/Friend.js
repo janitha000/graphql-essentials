@@ -24,6 +24,15 @@ Friends.sync({ force: true }).then(() => {
 
         })
     })
+    _.times(10, (i) => {
+        Friends.create({
+            firstName: casual.first_name,
+            lastName: casual.last_name,
+            gender: "FEMALE",
+            email: casual.word
+
+        })
+    })
 })
 
 export { Friends }
