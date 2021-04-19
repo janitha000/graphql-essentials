@@ -14,9 +14,12 @@ function App() {
           if (error) return 'Error...';
           if (data) {
             return (
-              data.getFriendsDB.map((friend) => (
-                <div className="">{friend?.firstName}</div>
-              ))
+              <>
+                <div className="">Database Name: {data.databaseName}</div>
+                {data.getFriendsDB.map((friend) => (
+                  <div className="">{friend?.firstName}</div>
+                ))}
+              </>
             )
           }
 
@@ -29,7 +32,8 @@ function App() {
 }
 
 const GET_QUERY = gql`
-  {
+query App {
+  databaseName @client
   getFriendsDB {
     firstName
     lastName

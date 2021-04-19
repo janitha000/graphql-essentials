@@ -4,18 +4,27 @@ import './custom.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { HttpLink } from 'apollo-link-http';
-import { split } from 'apollo-link';
+import { ApolloLink, split } from 'apollo-link';
 import { ApolloClient } from 'apollo-client';
 import { ApolloProvider } from '@apollo/react-common';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { withClientState } from 'apollo-link-state';
 
 const httpLink = new HttpLink({
   uri: 'http://localhost:5000/graphql'
 })
 
-const link = httpLink
 const cache = new InMemoryCache();
 
+const clientStateLink = withClientState({
+  cache,
+  defaults: {
+    databaseName: 'sqllite'
+  },
+  resolvers: {}
+})
+
+const link = ApolloLink.from([clientStateLink, httpLink])
 
 const client = new ApolloClient({
   link,
